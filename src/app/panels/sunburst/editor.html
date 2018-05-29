@@ -1,3 +1,18 @@
+<!-- Banana-Modified-by-DISIT-Lab.
+   Copyright (C) 2018 DISIT Lab https://www.disit.org - University of Florence
+
+   This program is free software; you can redistribute it and/or
+   modify it under the terms of the GNU General Public License
+   as published by the Free Software Foundation; either version 2
+   of the License, or (at your option) any later version.
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA. -->
+
 <div class="row-fluid">
   <div class="span9">
     <h6>Facet Pivot String <tip>Separated by commas</tip></h6>
@@ -8,4 +23,27 @@
     <h6>Facet Limit</h6>
     <input type="number" class="input-medium" ng-model="panel.facet_limit" ng-change="set_refresh(true)">
   </div>
+    
+  <div class="span3">
+      <label class="small">Mode</label>
+      <!-- Banana: does not support 'min','mean','max', and 'total' modes yet -->
+      <!-- <select ng-change="set_refresh(true)" class="input-small" ng-model="panel.mode" ng-options="f for f in ['count','min','mean','max','total','value']"></select> -->
+      <select ng-change="set_refresh(true)" class="input-medium" ng-model="panel.mode" ng-options="f for f in ['count','sum(values)']"></select>
+    </div>
+    <div class="span2" ng-show="panel.mode != 'count'">
+      <label class="small">Value Field</label>
+        <input ng-change="set_refresh(true)" placeholder="Start typing" bs-typeahead="fields.list" type="text" class="input-small" ng-model="panel.value_field">
+    </div>
+<!--    <div class="span2" ng-show="panel.mode != 'count'">
+      <label class="small">Max Rows <tip>Maximum number of rows to retrieve for the result set.</tip></label>
+      <input ng-change="set_refresh(true)" placeholder="100000" type="number" class="input-small" ng-model="panel.max_rows">
+    </div>  -->
+    <div class="span3" ng-show="panel.mode != 'count'">
+      <label class="small">Note</label><small> In <strong>{{panel.mode}}</strong> mode the configured field <strong>must</strong> be a numeric type.</small>
+    </div>
+  <!-- Row for Group By field when Mode is values -->
+  <div class="row-fluid" ng-show="panel.mode == 'sum(values)'">
+    <div class="span4"></div>
+  </div>
+    
 </div>

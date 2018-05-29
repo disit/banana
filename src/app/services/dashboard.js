@@ -1,3 +1,19 @@
+/* Banana-Modified-by-DISIT-Lab.
+   Copyright (C) 2018 DISIT Lab https://www.disit.org - University of Florence
+
+   This program is free software; you can redistribute it and/or
+   modify it under the terms of the GNU General Public License
+   as published by the Free Software Foundation; either version 2
+   of the License, or (at your option) any later version.
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA. */
+
+
 define([
     'angular',
     'jquery',
@@ -419,12 +435,30 @@ function (angular, $, kbn, _, config, moment, Modernizr) {
         };
 
         // Save a dashboard to Fusion or Solr
+
+
         this.elasticsearch_save = function (type, title, ttl) {
+
+
+	//var blacklist=['dd','kk','ses'];
+
+            if (config.blacklist.indexOf(title) >= 0 )
+        {
+            alertSrv.set('Dashboard name conflicts with readonly dashboard');
+        }
+	    
+	    else{
+
+
+
             // Clone object so we can modify it without influencing the existing obejct
             var save = _.clone(self.current);
             var id;
             var dashboard_user = self.current.username;
             var isPublic = false;
+
+
+
 
             // Change title on object clone
             if (type === 'dashboard') {
@@ -494,9 +528,16 @@ function (angular, $, kbn, _, config, moment, Modernizr) {
                     return false;
                 }
             );
-        };
+     
+}
+   };
 
         this.elasticsearch_delete = function (id) {
+
+
+
+
+	    
             var server = self.current.solr.server + config.banana_index || config.solr + config.banana_index;
             // The index pipeline use /index endpoint, which is different from Solr (/update) and accepts different params.
             if (config.USE_FUSION) {
@@ -505,10 +546,12 @@ function (angular, $, kbn, _, config, moment, Modernizr) {
             }
 
             // Set sjs.client.server to use 'banana-int' for deleting dashboard
+
             sjs.client.useFusion(config.USE_FUSION);
             sjs.client.server(server);
 
             return sjs.Document(config.banana_index, 'dashboard', id).doDelete(
+
                 config.USE_FUSION,
                 // Success
                 function (result) {
@@ -527,6 +570,8 @@ function (angular, $, kbn, _, config, moment, Modernizr) {
                     return false;
                 }
             );
+
+	  
         };
 
         // Get a list of saved dashboards from Fusion or Solr

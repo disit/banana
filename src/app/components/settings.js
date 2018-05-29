@@ -1,3 +1,19 @@
+/* Banana-Modified-by-DISIT-Lab.
+   Copyright (C) 2018 DISIT Lab https://www.disit.org - University of Florence
+
+   This program is free software; you can redistribute it and/or
+   modify it under the terms of the GNU General Public License
+   as published by the Free Software Foundation; either version 2
+   of the License, or (at your option) any later version.
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA. */
+
+
 define(['underscore'],
 function (_) {
   "use strict";
@@ -13,6 +29,23 @@ function (_) {
       solr: "http://"+window.location.hostname+":8983/solr/",
       solr_core: "logs",
       timefield: "timestamp_tdt",
+      blacklist:[
+	  "Dashboard1-rt",
+	  "Developer Dashboard",
+	  "AMMA Dashboard 1min Snap4City-30minview",
+	  "AMMA Snap4City Full",
+	  "Resource Dashboard",
+	  "AMMA Snap4City",
+	  "AMMA Tool Snap4City",
+	  "ResDash Docker",
+	  "Cloud Resource Manager Snap4City",
+	  "Developer Dashboard New",
+	  "Dashboard1-RT",
+	  "Dashboard1",
+	  "Sensors-ETL-IOT-v3",
+ ],
+
+//	blacklist:[],
       USE_ADMIN_LUKE: true,
       USE_ADMIN_CORES: true,
       panel_names: [],

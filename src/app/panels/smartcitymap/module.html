@@ -1,0 +1,76 @@
+<!-- Banana-Modified-by-DISIT-Lab.
+   Copyright (C) 2018 DISIT Lab https://www.disit.org - University of Florence
+
+   This program is free software; you can redistribute it and/or
+   modify it under the terms of the GNU General Public License
+   as published by the Free Software Foundation; either version 2
+   of the License, or (at your option) any later version.
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+   You should have received a copy of the GNU General Public License
+   along with this program; if not, write to the Free Software
+   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA. -->
+
+<div ng-controller='smartcitymap' ng-init="init()">
+  <!-- This solution might work well for other panels that have trouble with heights -->
+  <div id="button-wrapper">
+      <input type="button" id="Btn-geo-filter" value="Geo-Facet" class="btnStyle" style = "width: 150px;"/>&emsp;<tip>Click on the Geo-Facet button to apply Geographical Faceting based on currently visualized area.</tip>
+  </div>
+  <div  style="padding-right:10px;padding-top:10px;height:{{panel.height|| row.height}};overflow:hidden">
+    <div smartcitymap id='smartcitymap' params="{{panel}}" style="height:75%"></div>
+    
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com//modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+    <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+  	<div class="widget" id="timeTrend_div">
+		<div class='ui-widget-content'>
+			<div id='timeTrend_header' class="widgetHeader">
+				<div id="timeTrend_infoButtonDiv" class="infoButtonContainer">
+				<!--   <a id ="info_modal" href="#" class="info_source"><i id="source_timeTrend" class="source_button fa fa-info-circle" style="font-size: 22px"></i></a>   -->
+				<!--   <i class="material-icons gisDriverPin" data-onMap="false">navigation</i> -->
+				</div>         
+				<div id="timeTrend_titleDiv" class="titleDiv" style="width: 95%"></div>
+			<!--	<div id="timeTrend_buttonsDiv" class="buttonsContainer">
+					<div class="singleBtnContainer"><a class="icon-cfg-widget" href="#"><span class="glyphicon glyphicon-cog glyphicon-modify-widget" aria-hidden="true"></span></a></div>
+					<div class="singleBtnContainer"><a class="icon-remove-widget" href="#"><span class="glyphicon glyphicon-remove glyphicon-modify-widget" aria-hidden="true"></span></a></div>
+				</div>
+				<div id="timeTrend_countdownContainerDiv" class="countdownContainer">
+					<div id="timeTrend_countdownDiv" class="countdown"></div> 
+				</div>      -->
+			</div>
+			
+			<div id="timeTrend_loading" class="loadingDiv" style="height: 150px;">
+				<div class="loadingTextDiv">
+					<p>Loading data, please wait</p>
+				</div>
+				<div class ="loadingIconDiv">
+					<i class='fa fa-spinner fa-spin'></i>
+				</div>
+			</div>
+			
+			<div id="timeTrend_content" class="content" style="height: 150px;">
+				<div id="timeTrend_noDataAlert" class="noDataAlert">
+					<div id="timeTrend_noDataAlertText" class="noDataAlertText">
+						Select a Service URI on the Map to display SmartCity enriched Data
+					</div>
+					<!--    <div id="timeTrend_noDataAlertIcon" class="noDataAlertIcon">
+						<i class="fa fa-times"></i>
+					</div>  -->
+				</div>
+				<div id="timeTrend_chartContainer" class="chartContainer"></div>
+			</div>
+		</div>	
+	</div> 
+    
+  </div>
+<!--  <div class="modal" style="display: none">
+        <div class="center">
+            <img alt="" src="app/panels/smartcitymap/loader.gif" />
+        </div>
+  </div>    -->
+    
+</div>
